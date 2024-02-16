@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Galaxy Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .parameter-input {
+            margin: 10px;
+        }
+        .parameter-input label {
+            margin-right: 10px;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parameter-input">
+        <label for="Size">Simulation size : 2400 px </label>
+    </div>
+    <div class="parameter-input">
+        <label for="scale">Scale ( pixel / light-year) -> 1px/2000ly = 0.0005 :</label>
+        <input type="number" id="scale" value="0.0005">
+    </div>
+    <div class="parameter-input">
+        <label for="deltaTime">Time Step (years):</label>
+        <input type="number" id="deltaTime" value="1000000">
+    </div>
+    <div class="parameter-input">
+        <label for="numStars">Number of Stars (of each ,total star x2):</label>
+        <input type="number" id="numStars" value="20000">
+    </div>
+    <div class="parameter-input">
+        <label for="massNeg">Negative Mass (solar mass):</label>
+        <input type="number" id="massNeg" value="-1000000000">
+    </div>
+    <div class="parameter-input">
+        <label for="massPos">Positive Mass (solar mass):</label>
+        <input type="number" id="massPos" value="500000000">
+    </div>
+    <div class="parameter-input">
+        <label for="hole">Size of Negative Hole (pixels):</label>
+        <input type="number" id="hole" value="120">
+    </div>
+    <div class="parameter-input">
+        <label for="galactR">Galaxy radius Size (pixels):</label>
+        <input type="number" id="galactR" value="20">
+    </div>
+    <div class="parameter-input">
+        <label for="elips">Galaxy initial Shape (1 for circular, < 1 for elliptical):</label>
+        <input type="number" id="elips" value="1" step="0.1" min="0" max="1">
+    </div>
+    <div class="parameter-input">
+        <label for="speedRot">Rotation Speed :</label>
+        <input type="number" id="speedRot" value="0.0000002">
+    </div>
+    <div class="parameter-input">
+        <label for="speed_init">Initial speed in pixel/year (tuned empirically for NegMatter, no Jean instability condition of points):</label>
+        <input type="number" id="speed_init" value="0.00000065">
+    </div>
+    <div class="parameter-input">
+        <label for="starColorNegative">Star Color Nega:</label>
+        <input type="color" id="starColorNegative" value="#00DDDD">
+    </div>
+    <div class="parameter-input">
+        <label for="starColorPositive">Star Color Posi:</label>
+        <input type="color" id="starColorPositive" value="#FFFFFF"> 
+    </div>
+    <div class="parameter-input">
+        <label for="starOpacity">Star Neg Opacity (0-100):</label>
+        <input type="range" id="starOpacityNeg" min="0" max="100" value="100"> <!-- Default opacity set to 100% -->
+    </div>
+    <div class="parameter-input">
+        <label for="starOpacity">Star Posi Opacity (0-100):</label>
+        <input type="range" id="starOpacityPos" min="0" max="100" value="50"> <!-- Default opacity set to 50% -->
+    </div>
+    
+    <button id="initButton">Initialize</button>
+    <button id="runButton">Run Simulation</button>
+
+    <canvas id="galaxyCanvas" width="2400" height="2400"></canvas>
+
+    <script src="https://unpkg.com/gpu.js/dist/gpu-browser.min.js"></script>
+    <script src="simulation.js"></script>
+</body>
+</html>
