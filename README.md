@@ -1,4 +1,4 @@
-2D Toy model Janus Jean Pierre Petit
+2D Galaxy Toy model Janus Jean Pierre Petit
 
 browser - Chrome : ok 
         - Microsft Edge : ok
