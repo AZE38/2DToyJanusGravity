@@ -116,9 +116,13 @@ function initMatterCluster(numStars,massG,Size=20,elipse=1,speedscale=0.000003,c
         let velY=0
         let ad=speedscale
         // Velocity for rotational motion
-
-        velX = -radius * Math.sin(angle)* ad;
-        velY = radius * Math.cos(angle) * ad;
+        if (radius <= radius*0.3){
+            velX = -radius * Math.sin(angle)* ad;
+            velY = radius * Math.cos(angle) * ad;
+        }else {
+            velX = -radius * Math.sin(angle)* ad*1.5;
+            velY = radius * Math.cos(angle) * ad*1.5;
+        }
 
         
 
