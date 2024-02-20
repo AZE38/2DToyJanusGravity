@@ -189,7 +189,7 @@ function initializeComputeForcesKernel(numStars) {
             if (i !== this.thread.x) {
                 const dx = starPositionsX[i] - myPosX;
                 const dy = starPositionsY[i] - myPosY;
-                let distance= Math.sqrt(dx * dx + dy * dy) + 3;
+                let distance= Math.sqrt(dx * dx + dy * dy) + 1;
 
                 const forceMagnitude = G * myMass * starMasses[i] / (distance * distance);
                 forceX += forceMagnitude * (dx / distance);
