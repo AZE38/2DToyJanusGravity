@@ -20,10 +20,11 @@ class Star {
     updatePosition(deltaTime, forceX, forceY,BoundR) {
         const accelX = forceX / this.massI;
         const accelY = forceY / this.massI;
-        this.posX += this.velX * deltaTime;
-        this.posY += this.velY * deltaTime;
+
         this.velX += accelX * deltaTime;
         this.velY += accelY * deltaTime;
+        this.posX += this.velX * deltaTime;
+        this.posY += this.velY * deltaTime;
 
         this.checkBoundaryCondition(speed_init,angleVariance,BoundR);
     }
