@@ -199,7 +199,7 @@ function initializeComputeForcesKernel(numStars) {
         //console.log("distanceFromCenter", distanceFromCentere)
         if (distanceFromCentere <= boundaryRadius) {
 
-           // fictive "shadow of negaMatter outside the simulation" (Big lacune + Nega matter inside = 0 (infinite homogeneous repartition) ) 
+           // fictive "shadow of negaMatter outside the simulation" (Big lacune + Nega matter inside = 0 (infinite homogeneous repartition); really work ? ) 
             const fictivemass = Math.PI * distanceFromCentere*distanceFromCentere*darkMatterDensity 
             const forceMagnitude = G * myMass * fictivemass /(distanceFromCentere*distanceFromCentere);
             forceX += forceMagnitude * ((myPosX - centerX) / distanceFromCentere);
