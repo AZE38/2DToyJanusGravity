@@ -20,12 +20,10 @@ class Star {
     updatePosition(deltaTime, forceX, forceY,BoundR) {
         const accelX = forceX / this.massI;
         const accelY = forceY / this.massI;
-        this.posX += this.velX * deltaTime;
-        this.posY += this.velY * deltaTime;
         this.velX += accelX * deltaTime;
         this.velY += accelY * deltaTime;
-
-
+        this.posX += this.velX * deltaTime;
+        this.posY += this.velY * deltaTime;
         this.checkBoundaryCondition(speed_init,angleVariance,BoundR);
     }
     checkBoundaryCondition(initialDarkMatterSpeed,angleVariance,BoundRadius) {
@@ -121,9 +119,8 @@ function initMatterCluster(numStars,massG,Size=20,elipse=1,speedscale=0.000003,c
 
         velX = -radius * Math.sin(angle)* ad;
         velY = radius * Math.cos(angle) * ad;
-        
 
-        
+
 
         matterStars.push(new Star(mass, Math.abs(mass), posX, posY, velX, velY,matterColor,'matter'));
     }
@@ -183,32 +180,32 @@ function initializeComputeForcesKernel(numStars) {
         const myPosX = starPositionsX[this.thread.x];
         const myPosY = starPositionsY[this.thread.x];
         const myMass = starMasses[this.thread.x];
-    
+
         for (let i = 0; i < this.constants.numStars; i++) {
             if (i !== this.thread.x) {
                 const dx = starPositionsX[i] - myPosX;
                 const dy = starPositionsY[i] - myPosY;
                 let distance= Math.sqrt(dx * dx + dy * dy) + 1;
-                
+
                 const forceMagnitude = G * myMass * starMasses[i] / (distance * distance);
                 forceX += forceMagnitude * (dx / distance);
                 forceY += forceMagnitude * (dy / distance);
             }
         }
-    
+
         // Additional fictive force due to constant Negative matter density outside (homogene density)
         //const r = Math.sqrt(myPosX * myPosX + myPosY * myPosY);
         const distanceFromCentere = Math.sqrt((myPosX - centerX) * (myPosX - centerX) + (myPosY - centerY) *(myPosY - centerY) );
         //console.log("distanceFromCenter", distanceFromCentere)
         if (distanceFromCentere <= boundaryRadius) {
 
-           // fictive "shadow of negaMatter outside the simulation" (Big lacune + Nega matter inside = 0 (infinite homogeneous repartition); really work ? ) 
+           // fictive "shadow of negaMatter outside the simulation" (Big lacune + Nega matter inside = 0 (infinite homogeneous repartition) ) 
             const fictivemass = Math.PI * distanceFromCentere*distanceFromCentere*darkMatterDensity 
             const forceMagnitude = G * myMass * fictivemass /(distanceFromCentere*distanceFromCentere);
             forceX += forceMagnitude * ((myPosX - centerX) / distanceFromCentere);
             forceY += forceMagnitude * ((myPosY - centerY) / distanceFromCentere);
         }
-    
+
         return [forceX, forceY];
     }, {
         constants: { numStars: outputSize },
@@ -240,7 +237,7 @@ function updateGalaxyGPU(stars, deltaTime, G, darkMatterDensity, boundaryRadius)
         forcesX, forcesY, starMassI, types, deltaTime, boundaryRadius
     );*/
 
-    
+
 
     // Update the stars array with new positions and velocities cpu
 
@@ -346,7 +343,7 @@ function updateSimulationParameters() {
 
     colorPos = hexToRGBA(colorPosa, starOpacityPos);
     // Log to console for verification, can be removed later
-    
+
     // Log to console for verification, can be removed later
     console.log("Updated Parameters:", {scale, G, deltaTime, numStars, massNeg, massPos, hole, galactR, elips, speedRot});
     initializeComputeForcesKernel(numStars*2);
@@ -399,4 +396,3 @@ function animate() {
         star.draw();
     });
 }
-
