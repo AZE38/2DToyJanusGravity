@@ -350,7 +350,7 @@ function updateSimulationParameters() {
 
     // Log to console for verification, can be removed later
     console.log("Updated Parameters:", {scale, G, deltaTime, numStars, massNeg, massPos, hole, galactR, elips, speedRot});
-    initializeComputeForcesKernel(numStars*2);
+    initializeComputeForcesKernel(numStars);
     initSimulation()
 }
 document.getElementById('initButton').addEventListener('click', updateSimulationParameters);
