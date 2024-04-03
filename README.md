@@ -1,4 +1,4 @@
-2D Galaxy Toy model Janus Jean Pierre Petit
+2D Galaxy Toy model Janus Jean Pierre Petit (brute force GPU N² , first order euler int)
 
 browser - Chrome : ok 
         - Microsft Edge : ok
