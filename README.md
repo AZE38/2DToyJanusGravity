@@ -1,4 +1,4 @@
-2D Galaxy Toy model Janus Jean Pierre Petit (Brute force N-body GPU N² , first order euler int)
+2D Galaxy Toy model Newtonian Janus Fluids  (Brute force N-body GPU N² , first order euler int)
 
 browser - Chrome : ok 
         - Microsft Edge : ok
