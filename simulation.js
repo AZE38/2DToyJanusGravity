@@ -147,9 +147,10 @@ function initDarkMatterCluster(numStars, speed,massG,size=120,color='rgba(255, 0
         const posY = (centerY + radius * Math.sin(angle));
 
         // Random direction velocity based on temperature
+        const speedVariation = speed * (1 + (Math.random() - 0.5) * 0.1) // +/- 5% variation around speed
         const velAngle = randomBetween(0, 2 * Math.PI);
-        const velX = speed * Math.cos(velAngle) ;
-        const velY = speed * Math.sin(velAngle);
+        const velX = speedVariation * Math.cos(velAngle) ;
+        const velY = speedVariation * Math.sin(velAngle);
 
         darkMatterStars.push(new Star(mass, Math.abs(mass), posX, posY, velX, velY,darkMatterColor,'darkMatter'));
     }
