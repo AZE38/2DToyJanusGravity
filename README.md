@@ -10,4 +10,6 @@ Tuto :
 choose your settings, click the intialize button, and Run the simulation with the Run button.
 You can stop by re-clicking the initialize button, choose other parameters re-initialize with the new parameter, and Re-Run any time you want.
 
+It's a simple not realistic model , to play with anti gravity effect.
+
 https://aze38.github.io/2DToyJanusGravity/
